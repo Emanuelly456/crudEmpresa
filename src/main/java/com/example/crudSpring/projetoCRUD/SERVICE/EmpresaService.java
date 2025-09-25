@@ -43,7 +43,7 @@ private final EmpresaRepository empresaRepository;
     
       Empresa empresaBuscada = buscaPorId(id).orElseThrow( () -> new IllegalArgumentException("Empresa não encontrada"));
 
-      empresaBuscada.setNome_empresa(dadosAtualizados.getNome_empresa());
+      empresaBuscada.setNome(dadosAtualizados.getNome());
       empresaBuscada.setCnpj(dadosAtualizados.getCnpj());
       empresaBuscada.setRamo(dadosAtualizados.getRamo());
 
