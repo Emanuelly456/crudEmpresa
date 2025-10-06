@@ -34,7 +34,7 @@
                 <td th:text="${empresa.ramo}"></td>
                 <td>
                     <!-- Botão Editar -->
-                    <a th:href="@{/empresaCTR/editarEmpresa/{id}(id=${empresa.id_empresa})}">Editar</a>
+                    <a th:href="@{/empresaCTR/editar/{id}(id=${empresa.id_empresa})}">Editar</a>
                     
                     <!-- Botão Excluir -->
                     <a th:href="@{/empresaCTR/deletarEmpresa/{id}(id=${empresa.id_empresa})}" 
