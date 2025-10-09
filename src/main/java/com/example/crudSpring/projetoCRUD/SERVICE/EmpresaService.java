@@ -29,8 +29,8 @@ private final EmpresaRepository empresaRepository;
    
    }
      // deletar alguma parte de banco
-   public void deletarEmpresa(Empresa dadoEmpresa){
-    empresaRepository.delete(dadoEmpresa);
+   public void deletarEmpresa(Long id){
+    empresaRepository.deleteById(id);
    }
 
    //realizar busca de dados usando

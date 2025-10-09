@@ -57,9 +57,20 @@ public class EmpresaController {
 
 
    @PostMapping("/atualizarEmpresa/{id}")
-   public String empresaAtualizar(@PathVariable Long id,
+   public String empresaAtualizar(@PathVariable("id") Long id,
    @ModelAttribute Empresa objEmpresaAtualizada){
+
+    empresaService.editarDadosEmpresa(id, objEmpresaAtualizada);
 
     return "redirect:/empresaCTR/listarTodasEmpresas";
    }
+
+   @GetMapping("/deletarEmpresa/{id}")
+   public String apagarEmpresa(@PathVariable("id") Long id) {
+
+     empresaService.deletarEmpresa(id);
+       return "redirect:/empresaCTR/listarTodasEmpresas";
+   }
+   
+
 }
