@@ -8,7 +8,7 @@
 
     <h2>Cadastrar Funcionario</h2>
 
-    <form th:action="@{/funcionarioCTR/salvar}" method="post" th:object="${funcionario}">
+    <form th:action="@{/funcionarioCTR/salvarFuncionario}" method="post" th:object="${funcionario}">
     
     <label>Nome:</label>
     <input type="text" th:field="*{nome}" required><br>
