@@ -51,4 +51,16 @@ public class FuncionarioController {
     return "redirect:/funcionarioCTR/listarFunc";
   }
 
+  @GetMapping("/formAtualizar/{id}")
+  public String formAtualizarFuncionario (@PathVariable("id")Long id, Model oModel){
+
+      Funcionario funcionarioEncontrado = ligFuncionarioService.buscarFuncionarioPorId(id)
+      .orElseThrow(() -> new IllegalArgumentException("Funcionário não encontrado"));
+
+      oModel.addAttribute("Funcionario", funcionarioEncontrado);
+      oModel.addAttribute("empresas", ligacaoEmpresaService.findAll());
+
+      return "redirect:/funcionarioCTR/editarFuncionario";
+  }
+ 
 }
