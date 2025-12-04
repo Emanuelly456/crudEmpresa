@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.crudSpring.projetoCRUD.ENTITY.Funcionario;
 import com.example.crudSpring.projetoCRUD.SERVICE.EmpresaService;
@@ -73,5 +74,26 @@ public class FuncionarioController {
       return "redirect:/funcionarioCTR/listarFunc";
 
     }
+
+    @GetMapping("/formBuscarNome")
+  public String mostratFormBusca(Model oModel) {
+    return "buscarFuncionarioNome";
+  }
+
+
+
+  @GetMapping("/buscarFuncionarioNome")
+  public String executarFuncionarioNome(@RequestParam("nome") String nome_funcionario, Model oModel) {
+
+
+    if(nome_funcionario != null && !nome_funcionario.isEmpty()){
+      oModel.addAttribute("funcionarioNome",
+      ligFuncionarioService.buscarFuncionarioPorNome(nome_funcionario));
+
+    }
+    return "buscarFuncionarioNome";
+  }
   
 }
+
+

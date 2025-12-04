@@ -4,6 +4,131 @@
     <meta charset="UTF-8">
     <title>Pagina Principal</title>
 
+    <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Gilioti</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9acb, #ff5da2);
+            color: #333;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px #ff208b;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 0, 120, 0.4);
+            position: relative;
+        }
+
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* AQUI É O SEGREDO */
+        .btn-bolinha {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #ff3c9c;
+            color: #ff3c9c;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+
+            cursor: pointer;
+
+            /* força o elemento a ser clicável */
+            display: inline-flex;
+            position: relative;
+            z-index: 999;
+
+            transition: 0.3s;
+            box-shadow: 0 0 12px rgba(255, 0, 140, 0.3);
+        }
+
+        .btn-bolinha:hover {
+            background: #ff3c9c;
+            color: white;
+            transform: scale(1.12);
+            box-shadow: 0 0 20px rgba(255, 0, 140, 0.6);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 15px;
+            color: white;
+            text-shadow: 0 0 8px #ff0781;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        ✨ Sistema Gilioti ✨
+    </header>
+
+    <div class="container">
+
+        <h2 style="text-align:center; color:#ff0b88;">Escolha uma Ação</h2>
+
+        <div class="button-grid">
+
+            <a href="/empresaCTR/formNovaEmpresa" class="btn-bolinha">Nova Empresa</a>
+
+            <a href="/funcionarioCTR/formNovoFuncionario" class="btn-bolinha">Cadastrar<br>Funcionário</a>
+
+            <a href="/empresaCTR/listar" class="btn-bolinha">Listar Empresas</a>
+
+            <a href="/funcionarioCTR/listarFunc" class="btn-bolinha">Listar<br>Funcionários</a>
+
+            <a href="/empresaCTR/formBuscarNome" class="btn-bolinha">Buscar Empresa</a>
+
+            <a href="/funcionarioCTR/formBuscarNome" class="btn-bolinha">Buscar<br>Funcionário</a>
+
+        </div>
+
+    </div>
+
+    <footer>
+        © 2025 - Sistema Gilioti • Todos os direitos reservados
+    </footer>
+
+</body>
+</html>
+
     
 </head>
 <body>
@@ -21,6 +146,9 @@
 <br>
 <a th:href="@{/empresaCTR/formBuscarNome}">Listar empresa por Nome </a>
 <br>
+<a th:href="@{/funcionarioCTR/formBuscarNome}">Listar funcionario por Nome </a>
+<br>
+
 
 
    
