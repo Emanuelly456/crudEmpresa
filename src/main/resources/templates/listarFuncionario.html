@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,10 +5,108 @@
     <title>Listar Funcionários</title>
 
     <style>
-    table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9acb, #ff5da2);
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.4rem;
+            text-shadow: 0 0 10px #ff008c;
+            margin-top: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 0, 140, 0.4);
+        }
+
+        /* tabela fofinha */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #ff3c9c;
+            color: white;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ffb3d8;
+        }
+
+        tr:nth-child(even) {
+            background: #ffe4f2;
+        }
+
+        tr:hover {
+            background: #ffd1ec;
+            transition: 0.2s;
+        }
+
+        /* botões da tabela */
+        a.btn {
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background: #ff3c9c;
+            transition: 0.2s;
+            margin-right: 6px;
+        }
+
+        a.btn:hover {
+            background: #ff76b8;
+        }
+
+        a.btn-danger {
+            background: #ff0066;
+        }
+
+        a.btn-danger:hover {
+            background: #ff4d99;
+        }
+
+        /* botão cadastrar */
+        .add-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: white;
+            color: #ff3c9c;
+            border: 2px solid #ff3c9c;
+            border-radius: 30px;
+            font-weight: 700;
+            margin-top: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 12px rgba(255, 0, 140, 0.25);
+        }
+
+        .add-btn:hover {
+            background: #ff3c9c;
+            color: white;
+            transform: scale(1.05);
+        }
+
     </style>
 
 </head>
@@ -17,37 +114,49 @@
 
 <h2>Lista de Funcionários</h2>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Nome</th>
-            <th>Cargo</th>
-            <th>Salário</th>
-            <th>Empresa</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="func : ${funcionarios}">
-            <td th:text="${func.codigo}"></td>
-            <td th:text="${func.nome}"></td>
-            <td th:text="${func.cargo}"></td>
-            <td th:text="${func.salario}"></td>
-            <td th:text="${func.identificadorEmpresa.nome}"></td>
-            <td>
-                <a th:href="@{/funcionarioCTR/formAtualizar/{id}(id=${func.codigo})}">Editar</a>
-                <a th:href="@{/funcionarioCTR/deletarFuncionario/{id}(id=${func.codigo})}" 
-                onclick="return confirm('Deseja realmente excluir este Funcionário?')">Excluir</a>
+<div class="container">
 
-                
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Salário</th>
+                <th>Empresa</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
 
-<br>
-<a th:href="@{/funcionarioCTR/formFuncionario}">Cadastrar Novo Funcionário</a>
+        <tbody>
+            <tr th:each="func : ${funcionarios}">
+                <td th:text="${func.codigo}"></td>
+                <td th:text="${func.nome}"></td>
+                <td th:text="${func.cargo}"></td>
+                <td th:text="${func.salario}"></td>
+                <td th:text="${func.identificadorEmpresa.nome}"></td>
+
+                <td>
+                    <a class="btn"
+                       th:href="@{/funcionarioCTR/formAtualizar/{id}(id=${func.codigo})}">
+                        Editar
+                    </a>
+
+                    <a class="btn btn-danger"
+                       th:href="@{/funcionarioCTR/deletarFuncionario/{id}(id=${func.codigo})}"
+                       onclick="return confirm('Deseja realmente excluir este Funcionário?')">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="add-btn" th:href="@{/funcionarioCTR/formFuncionario}">
+        + Cadastrar Novo Funcionário
+    </a>
+
+</div>
 
 </body>
 </html>

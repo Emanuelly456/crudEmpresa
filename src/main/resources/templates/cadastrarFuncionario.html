@@ -2,35 +2,172 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro Funcionario</title>
+    <title>Lista de Empresas</title>
+
+<style>
+
+    /* Fundo roxo */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        background: linear-gradient(135deg, #7b2ff7, #9f5fff);
+        color: #333;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* Título */
+    h2 {
+        text-align: center;
+        color: white;
+        margin-top: 40px;
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-shadow: 0 0 12px #b56fff, 0 0 22px white;
+    }
+
+    /* Container */
+    .container {
+        max-width: 1100px;
+        margin: 50px auto;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 0 25px rgba(155, 95, 255, 0.45);
+        backdrop-filter: blur(6px);
+    }
+
+    /* Tabela decorada */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(159, 95, 255, 0.35);
+        margin-top: 15px;
+    }
+
+    th {
+        background: #9f5fff;
+        color: white;
+        padding: 16px;
+        font-size: 1.2rem;
+    }
+
+    td {
+        padding: 14px;
+        border-bottom: 1px solid #d1b8ff;
+        font-size: 1.1rem;
+    }
+
+    tr:nth-child(even) {
+        background: #f0e5ff;
+    }
+
+    tr:hover {
+        background: #d9caff;
+        transition: 0.2s;
+    }
+
+    /* Botões */
+    a.btn {
+        padding: 7px 15px;
+        background: #9f5fff;
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: 0.2s;
+        margin-right: 6px;
+        display: inline-block;
+    }
+
+    a.btn:hover {
+        background: #b88bff;
+        transform: scale(1.07);
+    }
+
+    a.btn-danger {
+        background: #7b2ff7;
+    }
+
+    a.btn-danger:hover {
+        background: #9a5aff;
+    }
+
+    /* Botão Nova Empresa */
+    .add-btn {
+        display: block;
+        width: 260px;
+        margin: 30px auto 0;
+        padding: 14px;
+        background: white;
+        text-align: center;
+        color: #9f5fff;
+        border: 3px solid #9f5fff;
+        font-weight: 800;
+        border-radius: 40px;
+        text-decoration: none;
+        transition: 0.3s;
+        box-shadow: 0 0 12px rgba(159, 95, 255, 0.4);
+    }
+
+    .add-btn:hover {
+        background: #9f5fff;
+        color: white;
+        transform: scale(1.08);
+    }
+
+</style>
+
 </head>
 <body>
 
-    <h2>Cadastrar Funcionario</h2>
+<h2>Lista de Empresas 🌺</h2>
 
-    <form th:action="@{/funcionarioCTR/salvarFuncionario}" method="post" th:object="${funcionario}">
-    
-    <label>Nome:</label>
-    <input type="text" th:field="*{nome}" required><br>
+<div class="container">
 
-    <label>Cargo:</label>
-    <input type="text" th:field="*{cargo}" required><br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>Ramo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
 
-    <label>Salário:</label>
-    <input type="number" step="0.01" th:field="*{salario}" required><br>
+        <tbody>
+            <tr th:each="empresa : ${empresas}">
+                <td th:text="${empresa.id_empresa}"></td>
+                <td th:text="${empresa.nome}"></td>
+                <td th:text="${empresa.cnpj}"></td>
+                <td th:text="${empresa.ramo}"></td>
 
-    <label>Empresa:</label>
-    <select th:field="*{identificadorEmpresa}" required>
-        <option value="">Selecione uma empresa</option>
-        <option th:each="emp : ${empresas}"
-                th:value="${emp.id_empresa}"
-                th:text="${emp.nome}">
-        </option>
-    </select>
+                <td>
+                    <a class="btn"
+                       th:href="@{/empresaCTR/editar/{id}(id=${empresa.id_empresa})}">
+                        Editar
+                    </a>
 
-    <button type="submit">Salvar</button>
+                    <a class="btn btn-danger"
+                       th:href="@{/empresaCTR/deletarEmpresa/{id}(id=${empresa.id_empresa})}"
+                       onclick="return confirm('Deseja realmente excluir esta empresa?')">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    </form>
+    <a class="add-btn" th:href="@{/empresaCTR/viewCadEmpresa}">
+        + Nova Empresa
+    </a>
+
+</div>
 
 </body>
 </html>
